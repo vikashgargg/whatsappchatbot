@@ -1,0 +1,219 @@
+{
+	"info": {
+		"name": "whatsapp-chatbot",
+		"_postman_id": "914a80b5-e844-0a9f-56bc-5608e8205c68",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "yahoo weather api",
+			"description": "",
+			"item": [
+				{
+					"name": "Yahoo Weather API Test",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/*",
+									"Request Query",
+									"select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='sdsdfsdfsdfsdf')",
+									"Response Query",
+									"{",
+									"    \"query\": {",
+									"        \"count\": 0,",
+									"        \"created\": \"2018-10-13T12:02:36Z\",",
+									"        \"lang\": \"en-US\",",
+									"        \"results\": null",
+									"    }",
+									"}",
+									"Request Query",
+									"select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='Delhi')",
+									"",
+									"*/"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "q",
+									"value": "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='sdsdfsdfsdfsdf')",
+									"type": "text"
+								},
+								{
+									"key": "format",
+									"value": "json",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://query.yahooapis.com/v1/public/yql",
+							"protocol": "https",
+							"host": [
+								"query",
+								"yahooapis",
+								"com"
+							],
+							"path": [
+								"v1",
+								"public",
+								"yql"
+							]
+						},
+						"description": "Generated from a curl request: \ncurl https://query.yahooapis.com/v1/public/yql \\\n   -d q=\\\"select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='Delhi')\\\" \\\n   -d format=json"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "whatsapp-chatbot callback API",
+			"description": "",
+			"item": [
+				{
+					"name": "dialogflow-webhook callback Test",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"a4dab5fa-7663-447d-b3d1-db2f29f47914\",\n  \"timestamp\": \"2018-10-09T08:44:45.946Z\",\n  \"lang\": \"en\",\n  \"result\": {\n    \"source\": \"agent\",\n    \"resolvedQuery\": \"Whats is the weather in Delhi\",\n    \"speech\": \"\",\n    \"action\": \"yahooWeatherForecast\",\n    \"actionIncomplete\": false,\n    \"parameters\": {\n      \"geo-city\": \"Delhi\"\n    },\n    \"contexts\": [],\n    \"metadata\": {\n      \"intentId\": \"a9d664eb-9c91-428f-8c95-0ccfb0e60557\",\n      \"webhookUsed\": \"true\",\n      \"webhookForSlotFillingUsed\": \"false\",\n      \"isFallbackIntent\": \"false\",\n      \"intentName\": \"WeatherInfo\"\n    },\n    \"fulfillment\": {\n      \"speech\": \"\",\n      \"messages\": [\n        {\n          \"type\": 0,\n          \"speech\": \"\"\n        }\n      ]\n    },\n    \"score\": 0.7099999785423279\n  },\n  \"status\": {\n    \"code\": 200,\n    \"errorType\": \"success\"\n  },\n  \"sessionId\": \"c412f888-dc6f-09ac-b57e-f887fe7c8a2f\"\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3031/dialogflow-webhook",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3031",
+							"path": [
+								"dialogflow-webhook"
+							]
+						},
+						"description": "Generated from a curl request: \ncurl -X POST -H 'Content-Type: application/json' -d '{\\\"id\\\":\\\"a4dab5fa-7663-447d-b3d1-db2f29f47914\\\",\\\"timestamp\\\":\\\"2018-10-09T08:44:45.946Z\\\",\\\"lang\\\":\\\"en\\\",\\\"result\\\":{\\\"source\\\":\\\"agent\\\",\\\"resolvedQuery\\\":\\\"Whats is the weather in Delhi\\\",\\\"speech\\\":\\\"\\\",\\\"action\\\":\\\"yahooWeatherForecast\\\",\\\"actionIncomplete\\\":false,\\\"parameters\\\":{\\\"geo-city\\\":\\\"Delhi\\\"},\\\"contexts\\\":[],\\\"metadata\\\":{\\\"intentId\\\":\\\"a9d664eb-9c91-428f-8c95-0ccfb0e60557\\\",\\\"webhookUsed\\\":\\\"true\\\",\\\"webhookForSlotFillingUsed\\\":\\\"false\\\",\\\"isFallbackIntent\\\":\\\"false\\\",\\\"intentName\\\":\\\"WeatherInfo\\\"},\\\"fulfillment\\\":{\\\"speech\\\":\\\"\\\",\\\"messages\\\":[{\\\"type\\\":0,\\\"speech\\\":\\\"\\\"}]},\\\"score\\\":0.7099999785423279},\\\"status\\\":{\\\"code\\\":200,\\\"errorType\\\":\\\"success\\\"},\\\"sessionId\\\":\\\"c412f888-dc6f-09ac-b57e-f887fe7c8a2f\\\"}' 'https://b0358ad9.ngrok.io/dialogflow-webhook'"
+					},
+					"response": []
+				},
+				{
+					"name": "whatsapp-webhook callback Test",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"messages\": [\n        {\n            \"from\": \"919716004560\",\n            \"id\": \"ABEGkZcWAEVgAhDMlRWgCmkQ0rcAmquZ1I1N\",\n            \"image\": {\n                \"file\": \"/usr/local/wamedia/shared/fee5/3bc5/b4664df8bfbc3597bf48440a\",\n                \"id\": \"fee53bc5-b466-4df8-bfbc-3597bf48440a\",\n                \"mime_type\": \"image/jpeg\",\n                \"sha256\": \"174561e747c25eec2b47882d4104f45c99c627e8a0a70cb4b8abbf8373373b73\"\n            },\n            \"timestamp\": \"1539767822\",\n            \"type\": \"image\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3031/whatsapp-webhook",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3031",
+							"path": [
+								"whatsapp-webhook"
+							]
+						},
+						"description": "Generated from a curl request: \ncurl -X POST -H 'Content-Type: application/json' -d '{\\\"id\\\":\\\"a4dab5fa-7663-447d-b3d1-db2f29f47914\\\",\\\"timestamp\\\":\\\"2018-10-09T08:44:45.946Z\\\",\\\"lang\\\":\\\"en\\\",\\\"result\\\":{\\\"source\\\":\\\"agent\\\",\\\"resolvedQuery\\\":\\\"Whats is the weather in Delhi\\\",\\\"speech\\\":\\\"\\\",\\\"action\\\":\\\"yahooWeatherForecast\\\",\\\"actionIncomplete\\\":false,\\\"parameters\\\":{\\\"geo-city\\\":\\\"Delhi\\\"},\\\"contexts\\\":[],\\\"metadata\\\":{\\\"intentId\\\":\\\"a9d664eb-9c91-428f-8c95-0ccfb0e60557\\\",\\\"webhookUsed\\\":\\\"true\\\",\\\"webhookForSlotFillingUsed\\\":\\\"false\\\",\\\"isFallbackIntent\\\":\\\"false\\\",\\\"intentName\\\":\\\"WeatherInfo\\\"},\\\"fulfillment\\\":{\\\"speech\\\":\\\"\\\",\\\"messages\\\":[{\\\"type\\\":0,\\\"speech\\\":\\\"\\\"}]},\\\"score\\\":0.7099999785423279},\\\"status\\\":{\\\"code\\\":200,\\\"errorType\\\":\\\"success\\\"},\\\"sessionId\\\":\\\"c412f888-dc6f-09ac-b57e-f887fe7c8a2f\\\"}' 'https://b0358ad9.ngrok.io/dialogflow-webhook'"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "whatsapp-chatbot api",
+			"description": "",
+			"item": [
+				{
+					"name": "whatsapp-welcome-message API",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/*",
+									"",
+									"9503255995 - Himanshu",
+									"",
+									"*/"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://127.0.0.1:3031/whatsapp-welcome-message/9503255995",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3031",
+							"path": [
+								"whatsapp-welcome-message",
+								"9503255995"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "whatsapp-welcome-message API Glitch",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://whatsapp-chatbot.glitch.me/whatsapp-welcome-message/9716004560",
+							"protocol": "https",
+							"host": [
+								"whatsapp-chatbot",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"whatsapp-welcome-message",
+								"9716004560"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
